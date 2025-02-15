@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Memories</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <iframe src="audio.html" id="audio-frame"></iframe>
+
+  <header>
+    <div class="logo">
+      <h1>One Year Down</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="memories.html">Memories</a></li>
+        <li><a href="Games.html">Games</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="memories-section">
+    <h2>Our Memories </h2>
+    <p>Here are some special moments we've shared together over the last year...</p>
+  
+    <div class="slideshow-container">
+      <div class="slide fade">
+          <img src="your-image1.jpg" alt="Memory 1">
+          <div class="caption">My reintrodction to our friendly neighborhood spiderman</div>
+      </div>
+      <div class="slide fade">
+          <img src="your-image2.jpg" alt="Memory 2">
+          <div class="caption">You made me your acclaimed pancakes for valentines</div>
+      </div>
+      <div class="slide fade">
+          <img src="your-image3.jpg" alt="Memory 3">
+          <div class="caption">What we ate the day you asked me out</div>
+      </div>
+      <div class="slide fade">
+          <img src="your-image4.jpg" alt="Memory 4">
+          <div class="caption">My very late valentines gift to you </div>
+      </div>
+      <div class="slide fade">
+        <img src="your-image5.jpg" alt="Memory 4">
+        <div class="caption">Hashira training arc</div>
+    </div>
+    <div class="slide fade">
+      <img src="your-image6.jpg" alt="Memory 4">
+      <div class="caption">My first nail set from you, i loved it so much!</div>
+  </div>
+  <div class="slide fade">
+    <img src="your-image7.jpg" alt="Memory 4">
+    <div class="caption">Best silhouette challenge in the world</div>
+</div>
+<div class="slide fade">
+  <img src="your-image8.jpg" alt="Memory 4">
+  <div class="caption">My birthday gifts from you, i was so happy and grateful</div>
+</div>
+<div class="slide fade">
+  <img src="your-image9.jpg" alt="Memory 4">
+  <div class="caption">PamPam's birthday, we had a photoshoot in miniso</div>
+</div>
+<div class="slide fade">
+  <img src="your-image10.jpg" alt="Memory 4">
+  <div class="caption">Always making sure that you're well fed</div>
+</div>
+<div class="slide fade">
+  <img src="your-image11.jpg" alt="Memory 4">
+  <div class="caption">We traveled together almost every weekend</div>
+</div>
+<div class="slide fade">
+  <img src="your-image12.jpg" alt="Memory 4">
+  <div class="caption">Your birthday gifts from me, i was so nervous that day!</div>
+</div>
+<div class="slide fade">
+  <img src="your-image13.jpg" alt="Memory 4">
+  <div class="caption">In the club eating your money as i should 🍽️</div>
+</div>
+<div class="slide fade">
+  <img src="your-image14.jpg" alt="Memory 4">
+  <div class="caption">Matching jewelry because we're locked in like that💖</div>
+</div>
+      <!-- Add more slides if you want! -->
+  
+      <!-- Navigation Buttons -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+  
+  <section id="our-songs">
+    <h2>🎶 Our Songs 🎶</h2>
+    <p>These songs remind me of you and our special moments together. 💖 Click the link below to listen on Spotify!</p>
+    
+    <div class="playlist-container">
+        <img src="playlist-cover.jpg" alt="Our Playlist Cover" id="playlist-image">
+        <a href="https://open.spotify.com/playlist/4Sy79DhpQvch790VYGxlBp?si=Of3oGathT-K9SnvfaOr3ZQ&nd=1&dlsi=1ef6ea7d7981452a" target="_blank" class="spotify-link">
+            💕 Listen on Spotify 💕
+        </a>
+    </div>
+</section>
+
+  </section>
+  <div class="timer-container">
+    <h2>We've been together for:</h2>
+    <div id="timer" class="timer">
+      <span id="days">00</span> days 
+      <span id="hours">00</span> hours 
+      <span id="minutes">00</span> minutes 
+      <span id="seconds">00</span> seconds
+    </div>
+  </div>
+
+  <a href="index.html" class="back-btn">Back to Home</a>
+  
+
+<script>
+  let slideIndex = 0;
+
+  function showSlides() {
+      let slides = document.getElementsByClassName("slide");
+      for (let i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1; }
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 4000); // Change image every 4 seconds
+  }
+
+  function plusSlides(n) {
+      slideIndex += n - 1;
+      showSlides();
+  }
+
+  document.addEventListener("DOMContentLoaded", showSlides);
+</script>
+<button id="music-toggle">🎵</button>
+<audio id="background-music" loop>
+    <source src="your-song.mp3" type="audio/mp3">
+    Your browser does not support the audio tag.
+</audio>
+
+  <footer>
+    <p>Made with 💖 by Irregular speedometer</p>
+  </footer>
+  <script>
+    // Set your anniversary date
+const anniversaryDate = new Date("2024-02-16T00:00:00"); // Replace with your anniversary date and time
+
+function updateTimer() {
+  const now = new Date();
+  const timeDifference = now - anniversaryDate;
+
+  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+  const seconds = Math.floor((timeDifference / 1000) % 60);
+
+  document.getElementById("days").textContent = days;
+  document.getElementById("hours").textContent = hours;
+  document.getElementById("minutes").textContent = minutes;
+  document.getElementById("seconds").textContent = seconds;
+}
+
+// Update the timer every second
+setInterval(updateTimer, 1000);
+
+// Initialize the timer
+updateTimer();
+
+  </script>
+  <script>
+    function createFlower() {
+        const flowerEmojis = ["🌸", "🌼", "🌺", "🌻"]; // Different flowers
+        const flower = document.createElement("div");
+        flower.classList.add("falling-flower");
+        flower.innerText = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+
+        document.body.appendChild(flower);
+
+        // Random position
+        flower.style.left = Math.random() * window.innerWidth + "px";
+
+        // Random animation duration (3-6 seconds)
+        let duration = Math.random() * 3 + 3;
+        flower.style.animationDuration = duration + "s";
+
+        // Make flower stay at the bottom and pile up
+        setTimeout(() => {
+            flower.style.position = "fixed";
+            flower.style.bottom = Math.random() * 20 + "px"; // Slight randomness in stacking
+            flower.style.left = flower.style.left; // Keeps it in place
+        }, duration * 1000); // After falling time
+
+        // Remove flowers after piling up for 5-10 seconds
+        setTimeout(() => {
+            flower.remove();
+        }, (duration + 7) * 1000);
+    }
+
+    // Create flowers repeatedly
+    setInterval(createFlower, 1000);
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+      const audio = document.getElementById("background-music");
+      const musicButton = document.getElementById("music-toggle");
+
+      // Restore playback position
+      const savedTime = localStorage.getItem("audioTime");
+      if (savedTime) {
+          audio.currentTime = parseFloat(savedTime);
+      }
+
+      // Check if music was playing before switching pages
+      if (sessionStorage.getItem("musicPlaying") === "true") {
+          audio.play().catch(() => console.log("Autoplay blocked."));
+          musicButton.innerText = "⏸";
+      } else {
+          musicButton.innerText = "🎵";
+      }
+
+      // Toggle music play/pause
+      musicButton.addEventListener("click", () => {
+          if (audio.paused) {
+              audio.play();
+              sessionStorage.setItem("musicPlaying", "true");
+              musicButton.innerText = "⏸";
+          } else {
+              audio.pause();
+              sessionStorage.setItem("musicPlaying", "false");
+              musicButton.innerText = "🎵";
+          }
+      });
+
+      // Save playback position before leaving the page
+      window.addEventListener("beforeunload", () => {
+          localStorage.setItem("audioTime", audio.currentTime);
+      });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1 Year Together - Anniversary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <iframe src="audio.html" id="audio-frame"></iframe>
+
+  <header>
+    <div class="logo">
+      <h1>One Year Together</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="memories.html">Memories</a></li>
+        <li><a href="Games.html">Games</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Happy Anniversary, My Love </h2>
+    <p>One year of beautiful memories and endless love. Here’s to many more!</p>
+    <button onclick="location.href='memories.html'">Let’s Rewind Our Memories-</button>
+  </section>
+  <section class="love-quotes">
+    <h2>Love Quotes for Us 💌</h2>
+    <blockquote id="quote-text">
+      "Love is composed of a single soul inhabiting two bodies." – Aristotle
+    </blockquote>
+    <p>- Ayomitunde & Ifeoluwa </p>
+  </section>
+  
+<div class="floating-butterflies"></div>
+<script>
+  function createButterfly() {
+      const butterfly = document.createElement("div");
+
+      // List of different butterfly emojis
+      const butterflyEmojis = ["🦋", "💙", "💜", "💖"]; // Blue, purple, pink butterflies
+
+      // Pick a random butterfly emoji
+      butterfly.innerText = butterflyEmojis[Math.floor(Math.random() * butterflyEmojis.length)];
+
+      butterfly.classList.add("butterfly");
+      butterfly.style.left = Math.random() * 100 + "vw"; // Random start position
+      butterfly.style.top = Math.random() * 100 + "vh"; // Random start height
+      butterfly.style.fontSize = Math.random() * 20 + 30 + "px"; // Vary sizes
+      butterfly.style.animationDuration = Math.random() * 5 + 5 + "s"; // Random speed
+
+      document.querySelector(".floating-butterflies").appendChild(butterfly);
+
+      // Remove butterfly after animation ends
+      setTimeout(() => {
+          butterfly.remove();
+      }, 6000);
+  }
+
+  // Generate butterflies at intervals (new ones appear over time)
+  setInterval(createButterfly, 800); // A new butterfly appears every 0.8 seconds
+</script>
+
+
+
+<button id="music-toggle">🎵</button>
+<audio id="background-music" loop>
+    <source src="your-song.mp3" type="audio/mp3">
+    Your browser does not support the audio tag.
+</audio>
+
+
+  <footer>
+    <p>Made with love by Your talented babe </p>
+  </footer>
+  <script>
+    const quotes = [
+      '"Love is composed of a single soul inhabiting two bodies." – Aristotle',
+      '"In all the world, there is no heart for me like yours." – Maya Angelou',
+      '"You have bewitched me, body and soul." – Jane Austen',
+      '"I would rather spend one lifetime with you, than face all the ages of this world alone." – J.R.R. Tolkien'
+    ];
+  
+    let currentIndex = 0;
+    const quoteElement = document.getElementById('quote-text');
+  
+    function rotateQuote() {
+      currentIndex = (currentIndex + 1) % quotes.length;
+      quoteElement.textContent = quotes[currentIndex];
+    }
+  
+    // Change the quote every 5 seconds
+    setInterval(rotateQuote, 5000);
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const audio = document.getElementById("background-music");
+        const musicButton = document.getElementById("music-toggle");
+
+        // Restore playback position
+        const savedTime = localStorage.getItem("audioTime");
+        if (savedTime) {
+            audio.currentTime = parseFloat(savedTime);
+        }
+
+        // Check if music was playing before switching pages
+        if (sessionStorage.getItem("musicPlaying") === "true") {
+            audio.play().catch(() => console.log("Autoplay blocked."));
+            musicButton.innerText = "⏸";
+        } else {
+            musicButton.innerText = "🎵";
+        }
+
+        // Toggle music play/pause
+        musicButton.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                sessionStorage.setItem("musicPlaying", "true");
+                musicButton.innerText = "⏸";
+            } else {
+                audio.pause();
+                sessionStorage.setItem("musicPlaying", "false");
+                musicButton.innerText = "🎵";
+            }
+        });
+
+        // Save playback position before leaving the page
+        window.addEventListener("beforeunload", () => {
+            localStorage.setItem("audioTime", audio.currentTime);
+        });
+    });
+</script>
+
+</body>
+</html>

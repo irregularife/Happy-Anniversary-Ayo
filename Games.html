@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Puzzle Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <iframe src="audio.html" id="audio-frame"></iframe>
+
+  <header>
+    <div class="logo">
+      <h1>Forever to go!</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="memories.html">Memories</a></li>
+        <li><a href="Games.html">Games</a></li>
+      </ul>
+    </nav>
+  </header>
+    <section class="puzzle-container">
+        <h2>Complete the Puzzle, My Love! 💖</h2>
+        
+    
+
+    <div id="puzzle-container"></div>
+    <p id="message" class="hidden">Yay! You did it! I love you! ❤️</p>
+
+    <script src="puzzle.js"></script> 
+    </section>
+    <div id="quiz-container">
+      <h2>💕How Well Do You Know Us?💕</h2>
+      <form id="loveQuiz">
+          <div class="question">
+              <p>1️⃣ Where did we first meet? 💑</p>
+              <input type="radio" name="q1" value="wrong1"> At NYSC camp <br>
+              <input type="radio" name="q1" value="correct"> At LASU <br>
+              <input type="radio" name="q1" value="wrong2"> Online <br>
+          </div>
+  
+          <div class="question">
+              <p>2️⃣ What is my favorite thing about you? 😍</p>
+              <input type="radio" name="q2" value="correct"> Your lips <br>
+              <input type="radio" name="q2" value="wrong1"> Your food <br>
+              <input type="radio" name="q2" value="wrong2"> Your jokes <br>
+          </div>
+  
+          <div class="question">
+              <p>3️⃣ When is our anniversary? 📅</p>
+              <input type="radio" name="q3" value="wrong1"> Feb 14 2024 <br>
+              <input type="radio" name="q3" value="correct"> Feb 16 2025 <br>
+              <input type="radio" name="q3" value="wrong2"> Feb 16 2024 <br>
+          </div>
+  
+          <button type="button" onclick="checkQuiz()"> Submit Answers</button>
+      </form>
+  
+      <p id="quiz-result"></p>
+  </div>
+  <div id="fortune-game">
+    <h2>💖 Love Fortune Teller 💖</h2>
+    <p>Click a heart to reveal your love fortune! 😍</p>
+    <div id="heart-container"></div>
+    <p id="fortune-message"></p>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+      const fortunes = [
+          "You’ll get 100 kisses today! 😘",
+          "A surprise hug is coming your way! 🤗",
+          "Your love is growing stronger every second! ❤️",
+          "Romantic date night incoming! 🌙✨",
+          "You will be showered with endless compliments! 💬💕",
+          "A cute message is coming your way soon! 💌",
+          "A cozy cuddle session awaits you! 🥰",
+          "Your heart is full of love today! 💖"
+      ];
+
+      const heartContainer = document.getElementById("heart-container");
+
+      function createHearts() {
+          heartContainer.innerHTML = ""; // Clear existing hearts
+          let hearts = [];
+
+          for (let i = 0; i < 6; i++) {
+              const heart = document.createElement("div");
+              heart.classList.add("heart");
+              heart.innerText = "❤️";
+              heart.addEventListener("click", () => {
+                  document.getElementById("fortune-message").innerText =
+                      fortunes[Math.floor(Math.random() * fortunes.length)];
+                  shuffleHearts(); // Shuffle after clicking
+              });
+              hearts.push(heart);
+          }
+
+          shuffleAndDisplay(hearts);
+      }
+
+      function shuffleHearts() {
+          let hearts = Array.from(document.querySelectorAll(".heart"));
+          shuffleAndDisplay(hearts);
+      }
+
+      function shuffleAndDisplay(hearts) {
+          heartContainer.innerHTML = ""; // Clear container
+          hearts.sort(() => Math.random() - 0.5); // Shuffle array
+          hearts.forEach((heart) => heartContainer.appendChild(heart)); // Re-add shuffled hearts
+      }
+
+      createHearts(); // Initialize hearts on page load
+  });
+</script>
+
+
+  <script>
+    function checkQuiz() {
+        let score = 0;
+
+        // Check answers
+        if (document.querySelector('input[name="q1"]:checked')?.value === "correct") score++;
+        if (document.querySelector('input[name="q2"]:checked')?.value === "correct") score++;
+        if (document.querySelector('input[name="q3"]:checked')?.value === "correct") score++;
+
+        let resultText = "";
+        if (score === 3) {
+            resultText = " You too sabi my baby! I love you! 💖";
+        } else if (score === 2) {
+            resultText = " You can do better than this, fine boy";
+        } else {
+            resultText = "😳 I cannot believe my eyes!";
+        }
+
+        document.getElementById("quiz-result").innerText = resultText;
+    }
+</script>
+  
+  
+<script>
+  function createFloatingEmoji() {
+      const gameEmojis = ["🎮", "🎲", "🕹️", "💖", "⭐", "🧩"]; // Cute game-related emojis
+      const emoji = document.createElement("div");
+      emoji.classList.add("floating-emoji");
+      emoji.innerText = gameEmojis[Math.floor(Math.random() * gameEmojis.length)];
+
+      document.body.appendChild(emoji);
+
+      // Random position on the screen
+      emoji.style.left = Math.random() * window.innerWidth + "px";
+      emoji.style.top = Math.random() * window.innerHeight + "px";
+
+      // Random animation duration (3-5 seconds)
+      let duration = Math.random() * 2 + 3;
+      emoji.style.animationDuration = duration + "s";
+
+      // Remove emoji after floating
+      setTimeout(() => {
+          emoji.remove();
+      }, duration * 1000);
+  }
+
+  // Create floating emojis repeatedly
+  setInterval(createFloatingEmoji, 800);
+</script>
+<button id="music-toggle">🎵</button>
+<audio id="background-music" loop>
+    <source src="your-song.mp3" type="audio/mp3">
+    Your browser does not support the audio tag.
+</audio>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+      const audio = document.getElementById("background-music");
+      const musicButton = document.getElementById("music-toggle");
+
+      // Restore playback position
+      const savedTime = localStorage.getItem("audioTime");
+      if (savedTime) {
+          audio.currentTime = parseFloat(savedTime);
+      }
+
+      // Check if music was playing before switching pages
+      if (sessionStorage.getItem("musicPlaying") === "true") {
+          audio.play().catch(() => console.log("Autoplay blocked."));
+          musicButton.innerText = "⏸";
+      } else {
+          musicButton.innerText = "🎵";
+      }
+
+      // Toggle music play/pause
+      musicButton.addEventListener("click", () => {
+          if (audio.paused) {
+              audio.play();
+              sessionStorage.setItem("musicPlaying", "true");
+              musicButton.innerText = "⏸";
+          } else {
+              audio.pause();
+              sessionStorage.setItem("musicPlaying", "false");
+              musicButton.innerText = "🎵";
+          }
+      });
+
+      // Save playback position before leaving the page
+      window.addEventListener("beforeunload", () => {
+          localStorage.setItem("audioTime", audio.currentTime);
+      });
+  });
+</script>
+
+
+    <footer>
+      <p>Made with love by Your Quell</p>
+    </footer>
+</body>
+</html>

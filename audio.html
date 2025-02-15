@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Player</title>
+</head>
+<body>
+    <audio id="background-music" loop autoplay>
+        <source src="your-song.mp3" type="audio/mp3">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <script>
+        const audio = document.getElementById("background-music");
+
+        // Restore playback position and play state
+        const savedTime = sessionStorage.getItem("audioTime");
+        if (savedTime) {
+            audio.currentTime = parseFloat(savedTime);
+        }
+
+        if (sessionStorage.getItem("musicPlaying") === "true") {
+            audio.play();
+        }
+
+        // Save playback time before page changes
+        window.addEventListener("beforeunload", () => {
+            sessionStorage.setItem("audioTime", audio.currentTime);
+        });
+    </script>
+</body>
+</html>
